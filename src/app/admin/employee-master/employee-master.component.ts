@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-master',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeMasterComponent implements OnInit {
 
-  constructor() { }
+  constructor(router: Router) { 
+    
+  }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,9 @@
+<form>
+    Name: <input type="text" [(ngModel)]="employee.name" name="name">
+    Date of Birth: <input type="date" [(ngModel)]="employee.dateOfBirth" name="dateOfBirth">
+    Date of Joining: <input type="date" [(ngModel)]="employee.dateOfJoining" name="dateOfJoining">
+    Salary: <input type="number" [(ngModel)]="employee.salary" name="salary">
+    Email: <input type="text" [(ngModel)]="employee.email" name="email">
+
+    <button (click)="addEmployee()">Add</button>
+</form>
