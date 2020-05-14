@@ -1,0 +1,13 @@
+<button (click)="addLeaveType()">Add</button>
+<table>
+    <tr>
+      <th>Name</th>
+      <th>MaximumLeavesAllowed</th>
+    </tr>
+    <tr *ngFor="let leaveType of leaveTypes">
+      <td>{{leaveType.name}}</td>
+      <td>{{leaveType.maximumLeavesAllowed}}</td>
+      <td><button (click)="editLeaveType(leaveType.id)">Edit</button></td>
+      <td><button (click)="deleteLeaveType(leaveType.id)">Delete</button></td>
+    </tr>
+  </table>

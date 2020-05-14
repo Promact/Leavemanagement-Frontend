@@ -1,0 +1,5 @@
+<form>
+    Name: <input type="text" [(ngModel)]="leaveType.name" name="name">
+    Maximum leaves allowed: <input type="number" [(ngModel)]="leaveType.maximumLeavesAllowed" name="maximumLeavesAllowed">
+    <button (click)="addLeaveType()">Add</button>
+</form>
