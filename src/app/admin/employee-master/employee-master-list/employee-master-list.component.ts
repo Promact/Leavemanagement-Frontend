@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EmployeeMasterListComponent implements OnInit {
 
   public employees: Employee[];
+  displayedColumns: string[] = ['name', 'DOB', 'DOJ', 'salary', 'email', 'action1', 'action2'];
 
   constructor(private employeeService: EmployeeService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
