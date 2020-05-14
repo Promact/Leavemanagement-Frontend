@@ -1,0 +1,12 @@
+<form>
+    Leave Type: 
+    <select [(ngModel)]="leaveApplication.leaveTypeId" name="leaveTypeId"> 
+        <option *ngFor="let leaveType of leaveTypes" [value]="leaveType.id">{{leaveType.name}}</option>>
+    </select>
+
+    Start Date: <input type="date" [(ngModel)]="leaveApplication.leaveStartDate" name="leaveStartDate">
+
+    End Date: <input type="date" [(ngModel)]="leaveApplication.leaveEndDate" name="leaveEndDate">
+
+    <button (click)="addLeaveType()">Add</button>
+</form>

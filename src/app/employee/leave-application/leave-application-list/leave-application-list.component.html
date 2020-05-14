@@ -1,0 +1,17 @@
+<button (click)="addLeaveApplication()">Add</button>
+<table>
+    <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Number of Days</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let leaveApplication of leaveApplications">
+        <td>{{leaveApplication.leaveStartDate}}</td>
+        <td>{{leaveApplication.leaveEndDate}}</td>
+        <td>{{leaveApplication.leaveTypeName}}</td>
+        <td>{{leaveApplication.numberOfDays}}</td>
+        <td>{{leaveApplication.leaveStatus}}</td>
+    </tr>
+</table>

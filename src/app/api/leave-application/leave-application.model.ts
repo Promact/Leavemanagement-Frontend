@@ -2,8 +2,8 @@ export class LeaveApplication {
     id: number;
     employeeId: number;
     employeeName: string;
-    startDate: Date;
-    endDate: Date;
+    leaveStartDate: Date;
+    leaveEndDate: Date;
     leaveTypeId: number;
     leaveTypeName: string;
     numberOfDays: number;
