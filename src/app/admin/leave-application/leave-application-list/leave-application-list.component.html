@@ -1,0 +1,21 @@
+<table>
+    <tr>
+      <th>Employee Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Leave Type</th>
+      <th>Number of Days</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let leaveApplication of leaveApplications">
+      <td>{{leaveApplication.employeeName}}</td>
+      <td>{{leaveApplication.startDate}}</td>
+      <td>{{leaveApplication.endDate}}</td>
+      <td>{{leaveApplication.leaveTypeName}}</td>
+      <td>{{leaveApplication.numberOfDays}}</td>
+      <td>{{leaveApplication.leaveStatus}}</td>
+      <td><button (click)="approveLeaveApplication(leaveApplication.id)">Approve</button></td>
+      <td><button (click)="rejectLeaveApplication(leaveApplication.id)">Reject</button></td>
+    </tr>
+  </table>
