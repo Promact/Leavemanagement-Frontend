@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LeaveApplication } from './leave-application.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LeaveApplicationService {
 
   private leaveApplicationApiUrl = 'http://localhost:5000/api/leaveapplication';
