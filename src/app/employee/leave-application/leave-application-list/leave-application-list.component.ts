@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveApplication } from '../../../api/leave-application/leave-application.model';
-import { LeaveApplicationService } from '../../../api/leave-application/leave-application.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LeaveApplicationDTO, LeaveApplicationClient } from '../../../api/LeaveManagementApi';
 
 @Component({
   selector: 'app-leave-application-list',
@@ -10,12 +9,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LeaveApplicationListComponent implements OnInit {
 
-  public leaveApplications: LeaveApplication[];
+  public leaveApplications: LeaveApplicationDTO[];
 
-  constructor(private leaveApplicationService: LeaveApplicationService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private leaveApplicationClient: LeaveApplicationClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.leaveApplicationService.getLeaveApplications().subscribe((data) => {
+    this.leaveApplicationClient.leaveApplication().subscribe((data) => {
       this.leaveApplications = data;
     }
     )

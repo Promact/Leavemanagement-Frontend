@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../api/employee/employee.model';
-import { EmployeeService } from '../../api/employee/employee.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EmployeeDTO, EmployeeClient } from '../../api/LeaveManagementApi';
 
 @Component({
   selector: 'app-profile',
@@ -10,13 +9,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  public profile: Employee = new Employee();
+  public profile: EmployeeDTO;
 
-  constructor(private employeeService: EmployeeService, private router: Router,private activatedRoute: ActivatedRoute) { }
+  constructor(private employeeClient: EmployeeClient, private router: Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     //TODO: get employee by current login id
-    this.employeeService.getEmployeeById(12).subscribe((data)=>{
+    this.employeeClient.getEmployee(12).subscribe((data)=>{
       this.profile = data;
     });
   }

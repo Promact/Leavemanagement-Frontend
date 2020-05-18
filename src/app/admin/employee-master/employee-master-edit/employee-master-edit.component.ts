@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../../api/employee/employee.model';
-import { EmployeeService } from '../../../api/employee/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeDTO, EmployeeClient } from '../../../api/LeaveManagementApi';
 
 @Component({
   selector: 'app-employee-master-edit',
@@ -10,18 +9,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EmployeeMasterEditComponent implements OnInit {
 
-  public employee: Employee = new Employee();
+  public employee: EmployeeDTO;
 
-  constructor(private employeeService: EmployeeService, private router: Router,private activatedRoute: ActivatedRoute) { }
+  constructor(private employeeClient: EmployeeClient, private router: Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.employeeService.getEmployeeById(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{
+    this.employeeClient.getEmployee(this.activatedRoute.snapshot.params['id']).subscribe((data)=>{
       this.employee = data;
     });
   }
 
   editEmployee(){
-    this.employeeService.editEmployee(this.employee).subscribe((data)=>{
+    this.employeeClient.putEmployee(this.employee.id, this.employee).subscribe((data)=>{
       this.router.navigate(['list'], {relativeTo: this.activatedRoute.parent});
     })
   }

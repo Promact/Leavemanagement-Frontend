@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../../../api/employee/employee.service';
-import { Employee } from '../../../api/employee/employee.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EmployeeDTO, EmployeeClient } from '../../../api/LeaveManagementApi';
 
 @Component({
   selector: 'app-employee-master-list',
@@ -10,13 +9,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmployeeMasterListComponent implements OnInit {
 
-  public employees: Employee[];
+  public employees: EmployeeDTO[];
   displayedColumns: string[] = ['name', 'DOB', 'DOJ', 'salary', 'email', 'action1', 'action2'];
 
-  constructor(private employeeService: EmployeeService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private employeeClient: EmployeeClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.employeeService.getEmployees().subscribe((data) =>{
+    this.employeeClient.getEmployeeAll().subscribe((data) =>{
         this.employees = data;
       }
     )
@@ -31,7 +30,7 @@ export class EmployeeMasterListComponent implements OnInit {
   }
 
   deleteEmployee(id: number){
-    this.employeeService.deleteEmployee(id).subscribe((data)=>{
+    this.employeeClient.deleteEmployee(id).subscribe((data)=>{
       this.employees.splice(this.employees.findIndex(item=>item.id == id), 1);
     })
   }

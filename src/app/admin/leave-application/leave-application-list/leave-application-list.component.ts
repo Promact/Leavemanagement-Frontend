@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveApplication, LeaveStatus } from '../../../api/leave-application/leave-application.model';
-import { LeaveApplicationService } from '../../../api/leave-application/leave-application.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LeaveApplicationDTO, LeaveApplicationClient, LeaveStatus } from '../../../api/LeaveManagementApi';
 
 @Component({
   selector: 'app-leave-application-list',
@@ -10,30 +9,30 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LeaveApplicationListComponent implements OnInit {
 
-  public leaveApplications: LeaveApplication[];
+  public leaveApplications: LeaveApplicationDTO[];
 
-  constructor(private leaveApplicationService: LeaveApplicationService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private leaveApplicationClient: LeaveApplicationClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.leaveApplicationService.getLeaveApplications().subscribe((data) => {
+    this.leaveApplicationClient.leaveApplication().subscribe((data) => {
       this.leaveApplications = data;
     }
     )
   }
 
-  approveLeaveApplication(leaveApplication: LeaveApplication) {
+  approveLeaveApplication(leaveApplication: LeaveApplicationDTO) {
 
     leaveApplication.leaveStatus = LeaveStatus.Approved;
 
-    this.leaveApplicationService.editLeaveApplication(leaveApplication).subscribe((data) => {
+    this.leaveApplicationClient.putLeaveApplication(leaveApplication.id, leaveApplication).subscribe((data) => {
       
     })
   }
 
-  rejectLeaveApplication(leaveApplication: LeaveApplication) {
+  rejectLeaveApplication(leaveApplication: LeaveApplicationDTO) {
     leaveApplication.leaveStatus = LeaveStatus.Rejected;
 
-    this.leaveApplicationService.editLeaveApplication(leaveApplication).subscribe((data) => {
+    this.leaveApplicationClient.putLeaveApplication(leaveApplication.id, leaveApplication).subscribe((data) => {
       
     })
   }

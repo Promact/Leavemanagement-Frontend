@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveType } from '../../../api/leave-type/leave-type.model';
-import { LeaveTypeService } from '../../../api/leave-type/leave-type.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LeaveType, LeaveTypeClient } from '../../../api/LeaveManagementApi';
 
 @Component({
   selector: 'app-leave-type-add',
@@ -10,15 +9,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LeaveTypeAddComponent implements OnInit {
 
-  public leaveType: LeaveType = new LeaveType();
+  public leaveType: LeaveType;
 
-  constructor(private leaveTypeService: LeaveTypeService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private leaveTypeClient: LeaveTypeClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   addLeaveType(){
-    this.leaveTypeService.addLeaveType(this.leaveType).subscribe((data)=>{
+    this.leaveTypeClient.postLeaveType(this.leaveType).subscribe((data)=>{
       this.router.navigate(['list'], {relativeTo: this.activatedRoute.parent});
     })
   }

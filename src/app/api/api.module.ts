@@ -1,9 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { EmployeeService } from './employee/employee.service';
-import { LeaveTypeService } from './leave-type/leave-type.service';
-import { LeaveApplicationService } from './leave-application/leave-application.service';
+import { EmployeeClient, LeaveTypeClient, LeaveApplicationClient } from './LeaveManagementApi';
 
 @NgModule({
   declarations: [],
@@ -11,7 +9,7 @@ import { LeaveApplicationService } from './leave-application/leave-application.s
     CommonModule,
     HttpClientModule
   ],
-  providers: [ EmployeeService, LeaveTypeService, LeaveApplicationService ] 
+  providers: [ EmployeeClient, LeaveTypeClient, LeaveApplicationClient ] 
 })
 
 export class ApiModule {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveType } from '../../../api/leave-type/leave-type.model';
-import { LeaveTypeService } from '../../../api/leave-type/leave-type.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LeaveTypeDTO, LeaveTypeClient } from '../../../api/LeaveManagementApi';
 
 @Component({
   selector: 'app-leave-type-list',
@@ -10,12 +9,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LeaveTypeListComponent implements OnInit {
 
-  public leaveTypes: LeaveType[];
+  public leaveTypes: LeaveTypeDTO[];
 
-  constructor(private leaveTypeService: LeaveTypeService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private leaveTypeClient: LeaveTypeClient, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.leaveTypeService.getLeaveTypes().subscribe((data) => {
+    this.leaveTypeClient.getLeaveTypeAll().subscribe((data) => {
       this.leaveTypes = data;
     }
     )
@@ -30,7 +29,7 @@ export class LeaveTypeListComponent implements OnInit {
   }
 
   deleteLeaveType(id: number) {
-    this.leaveTypeService.deleteLeaveType(id).subscribe((data) => {
+    this.leaveTypeClient.deleteLeaveType(id).subscribe((data) => {
       this.leaveTypes.splice(this.leaveTypes.findIndex(item => item.id == id), 1);
     })
   }
